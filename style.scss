@@ -1,0 +1,145 @@
+html                 { box-sizing: border-box;    }
+*:before, *:after, * { box-sizing: inherit;       }
+body                 { background-color: #F7F7F7; }
+
+// variables
+$search-box-transition-length: 0.6s;
+$search-box-size-inactive: 40px;
+$search-box-primary-color: grey;
+
+// short varables
+$sbtl: $search-box-transition-length;
+
+
+// Module core
+.search {
+  &-container {
+    padding: 40px;
+  }  
+  
+  &-box {
+    background: rgb(255, 255, 255);
+    background-color: transparent;
+    border-radius: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: $search-box-primary-color;
+    cursor: pointer;
+    height: 40px;
+    transition: width $sbtl, border-radius $sbtl, background $sbtl, box-shadow $sbtl;
+    width: 40px;
+    
+    // using the sibling selector
+    & + label              { max-width: 0;                                           }
+    & + label .search-icon { color: $search-box-primary-color; transition: all $sbtl }
+
+    &:hover {
+      background: rgb(200, 200, 200);
+      box-shadow: 0 0 0 5px transparentize($search-box-primary-color, .9);
+
+      & + label .search-icon { color: white; }
+    }
+    
+    &:focus {
+      border: none;
+      border-radius: auto;
+      background: rgb(235, 235, 235);
+      box-shadow: none;
+      color: black;
+      cursor: text;
+      outline: none;
+      padding-left: 15px;
+      transition: width $sbtl cubic-bezier(0,1.22,.66,1.39), border-radius $sbtl, background $sbtl;
+      width: 300px;
+
+      & + label .search-icon { color: $search-box-primary-color; }
+    }
+    
+    &:not(:focus) { 
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden; 
+    }
+  }
+  
+  &-icon {
+    cursor: pointer;
+    left: -31px;
+    position: relative;
+    top: 2px;
+  }
+  
+  &-btn {
+    display: none;
+    position: relative;
+  }
+}
+
+/* Container for header and navigation */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    nav, header {
+        display: flex;
+        align-items: center;
+    }
+
+    nav ul,
+    header ul.main-menu,
+    header ul.social-icons {
+        display: flex;
+        list-style: none;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Navigation styling */
+    nav ul li {
+        margin-right: 20px;
+
+    }
+
+    /* Header menu styling */
+    header ul.main-menu li {
+        margin-right: 20px;
+    }
+
+    /* Social icons styling */
+    header ul.social-icons li {
+        margin-left: 10px;
+    }
+
+    /* Align the image logo in the navigation */
+    nav ul li img {
+        height: 50px;
+    }
+
+    /* Search bar styling */
+    #search .search-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-box {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .search-btn {
+        padding: 5px 10px;
+        margin-left: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .search-icon {
+        margin-right: 5px;
+    }
+}
